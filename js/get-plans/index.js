@@ -2,10 +2,11 @@ const pgp = require('pg-promise')();
 var db;
 
 function main(params) {
+    var postgres_url = params['__bx_creds']['compose-for-postgresql']['uri'];
+    var base_url = params['__ow_headers']['x-forwarded-url'];
     return new Promise(function(resolve, reject) {
         console.log("get plans");
-        var url = params.postgres_url;
-        db = pgp(url, []);
+        db = pgp(postgres_url, []);
 
         // one record or many?
         var plan_id;
