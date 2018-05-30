@@ -12,8 +12,15 @@ cd ..
 
 cd write-plan
 zip -rq write-plan.zip index.js node_modules
-ibmcloud wsk action update --kind nodejs:6 --web raw plans-api/write-plan write-plan.zip
+ibmcloud wsk action update --kind nodejs:8 --web raw plans-api/write-plan write-plan.zip
 ibmcloud wsk api create /plans POST plans-api/write-plan --response-type http
+cd ..
+
+
+cd delete-plan
+zip -rq delete-plan.zip index.js node_modules
+ibmcloud wsk action update --kind nodejs:8 --web raw plans-api/delete-plan delete-plan.zip
+ibmcloud wsk api create /plans DELETE plans-api/delete-plan --response-type http
 cd ..
 
 
